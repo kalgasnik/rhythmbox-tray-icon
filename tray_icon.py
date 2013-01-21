@@ -1,9 +1,8 @@
-from gi.repository import Gtk, Gdk, GdkPixbuf, Peas, GObject
+from gi.repository import Gtk, Gdk, Peas, GObject
 import cairo
 
-iconsPath = "/usr/share/icons/"
-rhythmboxIcon = iconsPath + "hicolor/32x32/apps/rhythmbox.png"
-playIcon = iconsPath + "gnome/32x32/actions/media-playback-start.png"
+normalIconName = "rhythmbox"
+playIconName = "media-playback-start"
 
 class TrayIcon(GObject.Object, Peas.Activatable):
 
@@ -39,9 +38,9 @@ class TrayIcon(GObject.Object, Peas.Activatable):
 
 	def set_playing_icon(self, player, playing):
 		if playing:
-			self.icon.set_property("pixbuf", self.playIcon)
+			self.icon.set_from_icon_name(playIconName)
 		else:
-			self.icon.set_property("pixbuf", self.normalIcon)
+			self.icon.set_from_icon_name(normalIconName)
 
 	def do_activate(self):
 		self.shell = self.object
@@ -73,16 +72,8 @@ class TrayIcon(GObject.Object, Peas.Activatable):
 				])
 		ui.insert_action_group(ag)
 		self.popup = ui.get_widget("/PopupMenu")
-		
-		s1 = cairo.ImageSurface.create_from_png(rhythmboxIcon)
-		s2 = cairo.ImageSurface.create_from_png(playIcon)
-		ctx = cairo.Context(s1)
-		ctx.set_source_surface(s2, 0, 0)
-		ctx.paint()
-		self.playIcon = Gdk.pixbuf_get_from_surface(s1, 0, 0, s1.get_width(), s1.get_height())
 
-		self.normalIcon = GdkPixbuf.Pixbuf.new_from_file(rhythmboxIcon)
-		self.icon = Gtk.StatusIcon.new_from_pixbuf(self.normalIcon)
+		self.icon = Gtk.StatusIcon.new_from_icon_name(normalIconName)
 		self.icon.connect("scroll-event", self.scroll)
 		self.icon.connect("popup-menu", self.popup_menu)
 		self.icon.connect("button-press-event", self.toggle)
