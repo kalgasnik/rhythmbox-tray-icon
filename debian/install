@@ -1,2 +1,5 @@
 tray_icon.py usr/lib/rhythmbox/plugins/tray-icon
+config.py usr/lib/rhythmbox/plugins/tray-icon
 tray_icon.plugin usr/lib/rhythmbox/plugins/tray-icon
+trayicon-prefs.ui usr/share/rhythmbox/plugins/tray_icon
+org.gnome.rhythmbox.plugins.trayicon.gschema.xml /usr/share/glib-2.0/schemas
