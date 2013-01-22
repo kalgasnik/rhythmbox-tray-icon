@@ -1,0 +1,18 @@
+<schemalist>
+  <schema id="org.gnome.rhythmbox.plugins.trayicon" path="/org/gnome/rhythmbox/plugins/trayicon/">
+    <key name="normal-icon" type="s">
+      <default>'rhythmbox'</default>
+      <summary>Normal icon (paused/stopped)</summary>
+      <description>Normal icon (paused/stopped)</description>
+    </key>
+    <key name="play-icon" type="s">
+      <default>'media-playback-start'</default>
+      <summary>Play icon</summary>
+      <description>Play icon</description>
+    </key>
+    <key name="merge-play-icon" type="b">
+      <default>true</default>
+    </key>
+    <child name="source" schema="org.gnome.rhythmbox.source"/>
+  </schema>
+</schemalist>
